@@ -1,4 +1,6 @@
-## **http 요청 (request)와 응답(reponse)**
+# **http 요청 (request)와 응답(reponse)**
+
+<br>
 
 웹 브라우저(클라이언트)로 웹 사이트(서버)에 접속할 때 일어나는 일을 순서대로 생각해 보면 다음과 같다.
 
@@ -45,7 +47,7 @@ urllib.request module을 import한 이후, urllib.request.urlopen(요청할url).
 
 <br>
 
-## 웹 API 활용하기
+# 웹 API 활용하기
 
 웹에서는 다양한 기관과 회사가 프로그래밍에 필요한 정보를 제공하고 있다. 이런 서비스를 웹 API(Application Programming Interface)라고 한다. 웹 API에서 제공하는 데이터는 대부분 (HTML이 아니라) JSON 또는 XML 형식이어서 프로그래밍에 활용하기 용이하다. 웹 API로 제공되는 정보의 종류도 매우 다양한데, 다음은 몇 가지만 예를 들어본 것이다.
 
@@ -110,14 +112,19 @@ URL에 한글이 섞여 있으면 오류가 발생하기 때문에 아스키 코
 <br>
 <br>
 <br>
+<br>
 
-## 4.30 수업 note
+# 4.30 수업 note
 
 코드 참고: https://lms.koipa.or.kr/static/uploads/lectures/13/20190430%28%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EA%B3%A0%EA%B8%89%EB%B0%98%20%EC%9E%90%EC%97%B0%EC%96%B4%EC%B2%98%EB%A6%AC%29.html
 
 <br>
+<br>
 
-* Web browser <- HTTP -> Web server, Application server <-> Storage System
+![web](web.png)
+
+<br>
+
 
 <br>
 
@@ -127,33 +134,15 @@ URL에 한글이 섞여 있으면 오류가 발생하기 때문에 아스키 코
 
 * 일반적으로 요청을 보낸다 하면 request를 보낸다는 것. header를 분석해낼 수 있다. **status code**를 가지고 요청이 잘됐는지 확인할 수 있다.
 
-![index](i)
-
-
-Protocol http
-server www.example.com
-Port 80
-File index.html
-
-* HTTP - HyperText Transfer Protocol
-
-* HTML - HyperText Markup Language
-
+<br>
+<br>
 <br>
 
-# request
+![index](index.png)
 
-#### Header 
+![request](request.png)
 
-Get - /index.html
-Host - www.example.com
-Accept - text/html
-Accept-Language - en-us
-Accept-Charset - ISO-8859-1, utf-8
-User-agent - Mozilla/5.0
-Connection - keep-alive
-
-#### Body (optional)
+![method](method.png)
 
 get과 post 두개를 기억하자. 이외에도 많으나 나중에 확인해볼 것.
 
@@ -161,16 +150,16 @@ get과 post 두개를 기억하자. 이외에도 많으나 나중에 확인해�
 
 내가 원하는 데이터를 자동으로 만들 수 있는 crawler, spyder를 만들고자 한다.
 
-법적인 이슈를 먼저 짚고 나가야 한다.
+그전에 법적인 이슈를 먼저 짚고 나가야 한다.
 
 <br>
 
 # Legal Issues
 
-#### Opt-in vs Opt-out
+### **Opt-in vs Opt-out**
 
-* Opt-in 정보수집을 명시적으로 동의할 때에만 정보수집 가능하다; Whitelist
-* Opt-out 정보수집을 명시적으로 거부할 때에만 정보수집 중단; Blacklist
+1. Opt-in 정보수집을 명시적으로 동의할 때에만 정보수집 가능하다; Whitelist
+2. Opt-out 정보수집을 명시적으로 거부할 때에만 정보수집 중단; Blacklist
 
 * **퍼가지 말라고 명시적으로 나와있는 경우에 가져가면 불법이다. 개인 목적으로 쓰는건 상관 없지만 사업 목적에서 이용하는 것은 불법의 소지가 있다.**
 
@@ -178,37 +167,49 @@ get과 post 두개를 기억하자. 이외에도 많으나 나중에 확인해�
 
 #### 크롤링이 합법이다 vs 불법이다
 
-* 합법이다 주장: 항공권 가격 비교 서비스는 불법이 아니다. 공공의 이익. 하지만 여기서 수익이 나는 경우는 다르다.
+1. 합법이다 주장: 항공권 가격 비교 서비스는 불법이 아니다. 공공의 이익. 하지만 여기서 수익이 나는 경우는 다르다.
 
-* 불법이다 주장: 우리가 접속하는건 서버지만 실제 중요한 데이터는 db에 존재할 것이다. 그 사람들의 고유한 자산이기 때문에 침해하면 안된다. 보통 자신들의 회원들에게만 서비스를 제공하기 때문.
+2. 불법이다 주장: 우리가 접속하는건 서버지만 실제 중요한 데이터는 db에 존재할 것이다. 그 사람들의 고유한 자산이기 때문에 침해하면 안된다. 보통 자신들의 회원들에게만 서비스를 제공하기 때문.
 
+<br>
 
 우리가 만들 봇은 마치 회원인것 마냥 db에 접속할 수 있다. 이로 인해서 서버의 트래픽이 엄청 증가할 수 있다. 우리는 봇을 통해 일초에 수십 페이지를 긁을 수 있다. 사이트 운영하는 사람들 입장에서는 트래픽을 많이 잡아먹는 일이다. 마치 디도스 공격처럼 응용 가능하다.
+
+<br>
 
 많은 사례가 있다. 대표적 사례가 잡코리아, 사람인
 사람인이 잡코리아에 거액의 소송비를 내줬다.
 사람인 측이 네이버를 통해 들어갔기 때문에 
 
-사이트 하단?의 이용방침에 보면 크롤링을 거부한다고 명시되어 있다
-
-또한 robots.txt - 도메인 뒤에 치면 
-
-Googlebot봇
-Yeti봇
+<br>
+<br>
+<br>
 
 
-어떤 사이트를 수집 하느냐 보다는, 어떤 데이터를 수집 하느냐가 문제다
-1. Robots.txt
-2. Crawl delay (트래픽)
-3. Term of use (사이트 이용방칙 준수)
-4. Public content (지식재산권 침해 여부 주의)
-5. Authentication-based sites (민감한 정보 수집 주의)
+![이용방침](이용방침.png)
 
-Tips
+* 위와 같이 사이트 하단의 이용방침에 보면 크롤링을 거부한다고 명시되어 있다
 
-builtwith - 특정 사이트를 긁어와야 한다면 얘는 비동기적으로 데이터를 가지고 올 것이다. 그런 것들을 미리 확인해 보는 용도이다.
-whois - 
+<br>
+<br>
 
+![robots_txt](robots_txt.png)
+
+
+* 또한 robots.txt는 도메인 뒤에 연결해서 치면 나온다. 대부분의 기업들은 이 텍스트 file에 크롤링은 허용할건지 안할건지에 대해서 명시해 놓는다. 하지만 대부분 국내 중소 기업들은 해놓지 않은 경우도 많다. 이 말은 즉슨, **마음대로 정보를 수집해가도 불법이 아니라는 말**이다.
+
+<br>
+<br>
+
+![data](data.png)
+
+<br>
+<br>
+
+![tips](tips.png)
+
+* builtwith를 사용해서 웹이 사용한 기술을 볼 수 있다.
+* whois를 통해서 도메인 info를 가져올 수 있다.
 
 
 
