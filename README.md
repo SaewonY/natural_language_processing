@@ -2,4 +2,3 @@
 
 참고로 크롤링은 비상업적 목적(공부 및 개인 프로젝트)에 한해서만 사용해야하니 주의할 것.
 
-https://ai.koipa.or.kr/sub/receipt/receipt_page_2.phpwq
